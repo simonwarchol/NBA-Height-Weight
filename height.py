@@ -3,8 +3,9 @@ import re
 import unicodedata
 import requests
 
-year = raw_input("Enter a NBA season. Note that inputing 1999 would yield the 1998-1999 season:")
 
+#Change this year to change the year for the data
+year = "1999";
 r  = requests.get("http://www.basketball-reference.com/leagues/NBA_" +year+"_totals.html")
 
 data = r.text
@@ -12,7 +13,8 @@ data = r.text
 soup = BeautifulSoup(data)
 prev = ""
 where = 0
-top5 = [["", 0],["", 0], ["", 0], ["", 0], ["", 0]]
+heightlist = []
+print("\"Name\", \"Height (Inches)\", \"Height(Feet-Inches\", \"Weight\"")
 for link in soup.findAll('table')[0].findAll('a'):
     url = link.get('href')
     if (url.startswith("/players")):
@@ -26,6 +28,7 @@ for link in soup.findAll('table')[0].findAll('a'):
             name = name[:-5]
             height = soup2.findAll("p")[3]
             Height = unicode(height)
+            Weight = Height
             m = re.search('Height:(.+?)Weight:', Height)
             if m:
                 Height = m.group(1)
@@ -37,15 +40,21 @@ for link in soup.findAll('table')[0].findAll('a'):
             if(len(Height)>8):
                 height = soup2.findAll("p")[4]
                 Height = unicode(height)
+                Weight = Height
                 m = re.search('Height:(.+?)Weight:', Height)
                 if m:
                     Height = m.group(1)
                 m = re.search('</span>(.+?)<span', Height)
                 Height = Height[:-24]
                 Height = Height[7:]
+            m = re.search('Weight:(.+?)Age:', Weight)
+            if m:
+                Weight = m.group(1)
+            m = re.search('Weight:</span> (.+?) lbs', Weight)
+            if m:
+                Weight = m.group(1)
             Height = Height[:-3]
             Height = Height[1:]
-            print(len(Height))
             if (len(Height) == 4):
                 Feet = Height [:-3]
                 Inches = Height [2:]
@@ -53,7 +62,17 @@ for link in soup.findAll('table')[0].findAll('a'):
                 Feet = Height [:-2]
                 Inches = Height [2:]
             Total = int(Feet)*12 + int(Inches)
-            print(name)
-            print(Total)
+            Height.decode('ascii','ignore')
+            StringHeight = str(Feet)+"-"+str(Inches)
+            print "\"%s\", \"%d\", \"%s\", \"%d\""% (name, Total, StringHeight, int(Weight))
+            #see where this player ranks that season
+            heightlist.append((name, Total))
     prev = address
+# print("Done Reading Data In")
+# heightlist.sort(key=lambda tup: tup[1], reverse=True)
+# print "Tallest Player in the %d-%d NBA Season was %s with a height of %d'%d" 
+# print(heightlist[0][0])
+# print("With Height of")
+# print(heightlist[0][1])
+
 
