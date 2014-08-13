@@ -32,19 +32,28 @@ for link in soup.findAll('table')[0].findAll('a'):
             m = re.search('</span>(.+?)<span', Height)
             if m:
                 Height = m.group(1)
+            #players with pronounciations of their names
+            #require a sepcial case
+            if(len(Height)>8):
+                height = soup2.findAll("p")[4]
+                Height = unicode(height)
+                m = re.search('Height:(.+?)Weight:', Height)
+                if m:
+                    Height = m.group(1)
+                m = re.search('</span>(.+?)<span', Height)
+                Height = Height[:-24]
+                Height = Height[7:]
             Height = Height[:-3]
             Height = Height[1:]
-            print(where)
+            print(len(Height))
             if (len(Height) == 4):
                 Feet = Height [:-3]
                 Inches = Height [2:]
             else:
                 Feet = Height [:-2]
                 Inches = Height [2:]
-            #Total = int(Feet)*12 + int(Inches)
+            Total = int(Feet)*12 + int(Inches)
             print(name)
-            print("Feet:"+Feet)
-            print("Inches:"+Inches)
-            #print(Total)
+            print(Total)
     prev = address
 
