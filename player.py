@@ -6,7 +6,7 @@ import unicodedata
 
 top5 = [["", 0],["", 0], ["", 0], ["", 0], ["", 0]]
 
-soup2 = BeautifulSoup(requests.get("http://www.basketball-reference.com/players/g/garripa01.html").text)
+soup2 = BeautifulSoup(requests.get("http://www.basketball-reference.com/players/a/abdursh01.html").text)
 text = soup2.find("h1")
 next = 0
 height = soup2.findAll("p")[3]
@@ -30,4 +30,3 @@ else:
     print("Feet:"+Feet)
     print("Inches:"+Inches)
 Total = int(Feet)*12 + int(Inches)
-print(Total)
