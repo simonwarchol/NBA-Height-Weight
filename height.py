@@ -5,7 +5,7 @@ import requests
 
 
 #Change this year to change the year for the data
-year = "1999";
+year = "2006";
 r  = requests.get("http://www.basketball-reference.com/leagues/NBA_" +year+"_totals.html")
 
 data = r.text
@@ -14,7 +14,7 @@ soup = BeautifulSoup(data)
 prev = ""
 where = 0
 heightlist = []
-print("\"Name\", \"Height (Inches)\", \"Height(Feet-Inches\", \"Weight\"")
+print("\"Name\", Height (Inches), Height(Feet-Inches), Weight")
 for link in soup.findAll('table')[0].findAll('a'):
     url = link.get('href')
     if (url.startswith("/players")):
@@ -64,7 +64,7 @@ for link in soup.findAll('table')[0].findAll('a'):
             Total = int(Feet)*12 + int(Inches)
             Height.decode('ascii','ignore')
             StringHeight = str(Feet)+"-"+str(Inches)
-            print "\"%s\", \"%d\", \"%s\", \"%d\""% (name, Total, StringHeight, int(Weight))
+            print "\"%s\", %d, %s, %d"% (name, Total, StringHeight, int(Weight))
             #see where this player ranks that season
             heightlist.append((name, Total))
     prev = address
