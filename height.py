@@ -6,7 +6,7 @@ import requests
 
 
 #Change this year to change the year for the data
-year = "1954";
+year = "1992";
 #Feel free to comment this out, I simply haven't handled the case where weight isn't listed on a page
 if(1955>=int(year)):
     print("Consistent weight data is not available for NBA seasons earlier than 1955")
