@@ -4,29 +4,48 @@ import requests
 import unicodedata
 
 
-top5 = [["", 0],["", 0], ["", 0], ["", 0], ["", 0]]
 
-soup2 = BeautifulSoup(requests.get("http://www.basketball-reference.com/players/a/abdursh01.html").text)
-text = soup2.find("h1")
-next = 0
+soup2 = BeautifulSoup(requests.get("http://www.basketball-reference.com/players/s/schrode01.html").text)
+name = soup2.find("h1")
+name = unicode(name)
+name = name[4:]
+name = name[:-5]
 height = soup2.findAll("p")[3]
 Height = unicode(height)
+Weight = Height
 m = re.search('Height:(.+?)Weight:', Height)
 if m:
     Height = m.group(1)
 m = re.search('</span>(.+?)<span', Height)
 if m:
     Height = m.group(1)
+#players with pronounciations of their names
+#require a sepcial case
+if(len(Height)>8):
+    height = soup2.findAll("p")[4]
+    Height = unicode(height)
+    Weight = Height
+    m = re.search('Height:(.+?)Weight:', Height)
+    if m:
+        Height = m.group(1)
+    m = re.search('</span>(.+?)<span', Height)
+    Height = Height[:-24]
+    Height = Height[7:]
+m = re.search('Weight:(.+?)Age:', Weight)
+if m:
+    Weight = m.group(1)
+m = re.search('Weight:</span> (.+?) lbs', Weight)
+if m:
+    Weight = m.group(1)
 Height = Height[:-3]
 Height = Height[1:]
 if (len(Height) == 4):
     Feet = Height [:-3]
     Inches = Height [2:]
-    print("Feet:"+Feet)
-    print("Inches:"+Inches)
 else:
     Feet = Height [:-2]
     Inches = Height [2:]
-    print("Feet:"+Feet)
-    print("Inches:"+Inches)
 Total = int(Feet)*12 + int(Inches)
+Height.decode('ascii','ignore')
+StringHeight = str(Feet)+"-"+str(Inches)
+print "\"%s\", %d, %s, %d"% (name, Total, StringHeight, int(Weight))

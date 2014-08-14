@@ -4,8 +4,9 @@ import unicodedata
 import requests
 
 
+
 #Change this year to change the year for the data
-year = "2006";
+year = "2014";
 r  = requests.get("http://www.basketball-reference.com/leagues/NBA_" +year+"_totals.html")
 
 data = r.text
@@ -63,8 +64,11 @@ for link in soup.findAll('table')[0].findAll('a'):
                 Inches = Height [2:]
             Total = int(Feet)*12 + int(Inches)
             Height.decode('ascii','ignore')
+            unicodedata.normalize('NFKD', name).encode('ascii','ignore')
             StringHeight = str(Feet)+"-"+str(Inches)
-            print "\"%s\", %d, %s, %d"% (name, Total, StringHeight, int(Weight))
+            Weight = int(Weight.encode("utf-8"))
+
+            print "\"%s\", %d, %s, %d"% (name, Total, StringHeight, Weight)
             #see where this player ranks that season
             heightlist.append((name, Total))
     prev = address
