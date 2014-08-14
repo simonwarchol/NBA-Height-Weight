@@ -6,7 +6,11 @@ import requests
 
 
 #Change this year to change the year for the data
-year = "2014";
+year = "1954";
+#Feel free to comment this out, I simply haven't handled the case where weight isn't listed on a page
+if(1955>=int(year)):
+    print("Consistent weight data is not available for NBA seasons earlier than 1955")
+    exit()
 r  = requests.get("http://www.basketball-reference.com/leagues/NBA_" +year+"_totals.html")
 
 data = r.text
