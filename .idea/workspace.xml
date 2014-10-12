@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f179c018-bcb1-4b64-bd9b-2b208cff06ac" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html1.html" afterPath="$PROJECT_DIR$/html1.html" />
-    </list>
+    <list default="true" id="f179c018-bcb1-4b64-bd9b-2b208cff06ac" name="Default" comment="" />
     <ignored path="NBA-Height-Weight.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
