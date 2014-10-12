@@ -50,7 +50,7 @@ var xValue = function(d) { return d["Height"];}, // data -> value
     xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 
 // setup y
-var yValue = function(d) { return d["Width"];}, // data -> value
+var yValue = function(d) { return d["Weight"];}, // data -> value
     yScale = d3.scale.linear().range([width, 0]), // value -> display
     yMap = function(d) { return yScale(yValue(d));}, // data -> display
     yAxis = d3.svg.axis().scale(yScale).orient("left");
