@@ -4,13 +4,16 @@
   <head>
     <meta charset='utf-8'>
     <meta name="description" content="NBA Height and Weight Data : ">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/graph.css">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>NBA Height and Weight Data</title>
   </head>
 
   <body>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+ 
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
@@ -46,9 +49,8 @@
 
 <p>Here are some visualizations of the trends in NBA players' heights and weights</p>
 <h4>Average NBA Height & Weight (1955-2014)</h4>
-><h4>Here are the height and weight trends over time independently.</h4>
-<img src ="images/height.png" height="350" width="700">
-<img src ="images/weight.png" height="350" width="700">
+<div id="height"></div>
+<div id="weight"></div>
 <br>
 Interestingly, the average height of a NBA player has plateaued, while weight continues to increase at a slow and gradual rate. I had initially sepculated that given the NBA has become increasingly international, the average height and weight would have continued to increase over recent years. According to a press release from 2010, "At the end of the 2009-10 regular season, the NBA featured 79 international players from 35 countries and territories on team rosters (both active and inactive). In comparison, ten years ago NBA rosters featured 45 international players from 28 countries and territories on opening night of the 2000-01 season." This, however, doesn't seem to be the case.
 
@@ -68,6 +70,9 @@ Interestingly, the average height of a NBA player has plateaued, while weight co
     </div>
 
     
+  <script src="javascripts/height.js"></script>
+  <script src="javascripts/weight.js"></script>
+
 
   </body>
 </html>
