@@ -81,6 +81,6 @@ d3.csv("data/yearly.csv", function(error, data) {
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .style("text-decoration", "underline")
-        .text("NBA Average Height");
+        .text("NBA Average Weight");
 
 });
